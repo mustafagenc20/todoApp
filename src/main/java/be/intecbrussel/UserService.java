@@ -68,7 +68,6 @@ public class UserService {
         System.out.print("Finished task? :");
         String finished = scan.nextLine();
 
-
         String query = String.format("UPDATE todo_mustafa SET description='%s' , finished='%s' WHERE id = " + taskId, description, finished);
         try {
             Statement st = JDBCManager.getConnection().createStatement();

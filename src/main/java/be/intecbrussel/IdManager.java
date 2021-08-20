@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
 public class IdManager {
     private String id;
 
@@ -21,7 +20,6 @@ public class IdManager {
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-
         }
         return false;
     }

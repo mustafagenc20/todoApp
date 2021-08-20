@@ -19,9 +19,10 @@ public class IdManager {
                     return true;
                 }
             }
-        } catch(SQLException throwables){
-                throwables.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
 
-        } return false;
+        }
+        return false;
     }
 }

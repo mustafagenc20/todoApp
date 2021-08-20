@@ -8,9 +8,9 @@ public class UserService {
     public static void showList(String userId) {
         try {
             Statement statement = JDBCManager.getConnection().createStatement();
-            ResultSet rs = statement.executeQuery("select * from todo_mustafa WHERE user_id = " + userId);
+            ResultSet rs = statement.executeQuery("SELCET * FROM todo_mustafa WHERE user_id = " + userId);
             while (rs.next())
-                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
+                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
 
         } catch (Exception e) {
             System.out.println(e);
@@ -22,7 +22,7 @@ public class UserService {
         java.util.Date date = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-        Scanner scan= new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         System.out.print("Add new task :");
         String description = scan.nextLine();
 
@@ -32,7 +32,7 @@ public class UserService {
             pt.setString(1, description);
             pt.setString(2, userId);
             pt.setDate(3, sqlDate);
-            pt.setString(4,"0");
+            pt.setString(4, "0");
             pt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -41,13 +41,13 @@ public class UserService {
 
     public static void deleteTask(String userId) {
 
-        Scanner scan= new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         System.out.print("Delete task Id:");
         String taskId = scan.nextLine();
 
         String query = String.format("DELETE FROM todo_mustafa WHERE id =" + taskId);
         try {
-            Statement st= JDBCManager.getConnection().createStatement();
+            Statement st = JDBCManager.getConnection().createStatement();
             int deleted = st.executeUpdate(query);
             System.out.println("Deleted");
         } catch (SQLException throwables) {
@@ -60,7 +60,7 @@ public class UserService {
         java.util.Date date = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-        Scanner scan= new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         System.out.print("Task id:");
         String taskId = scan.nextLine();
         System.out.print("Update description :");
@@ -69,7 +69,7 @@ public class UserService {
         String finished = scan.nextLine();
 
 
-        String query =String.format("UPDATE todo_mustafa SET description='%s' , finished='%s' WHERE id = " + taskId,description,finished);
+        String query = String.format("UPDATE todo_mustafa SET description='%s' , finished='%s' WHERE id = " + taskId, description, finished);
         try {
             Statement st = JDBCManager.getConnection().createStatement();
             int update = st.executeUpdate(query);
